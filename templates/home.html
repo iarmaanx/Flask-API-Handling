@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foodish Image Viewer</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen p-6">
+
+    <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Random Food Image 🍔🍕🍣</h1>
+
+    <button 
+        onclick="getFoodImage()" 
+        class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300"
+    >
+        Get New Food Image
+    </button>
+
+    <br><br>
+
+    <img 
+        id="foodImage" 
+        src="" 
+        alt="Food Image" 
+        class="w-96 h-auto rounded-xl shadow-lg border border-gray-300"
+    >
+
+    <script>
+        function getFoodImage() {
+            fetch("/get-food-image")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("foodImage").src = data.image;
+                });
+        }
+    </script>
+
+</body>
+</html>
